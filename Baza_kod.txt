@@ -1,0 +1,71 @@
+Create table Uzytkownik
+(
+ID_Uzytkownik int primary key IDENTITY(1,1) not null,
+Imie varchar(30) not null,
+Nazwisko varchar(30) not null,
+Kod_karty varchar(10) not null
+);
+
+Create table Urzadzenie
+(
+ID_Urzadzenie int primary key IDENTITY(1,1) not null,
+Nazwa varchar(200) not null,
+Kod_urzadzenia varchar(15) not null,
+Wypozyczone bit
+);
+
+Create table Wypozyczenie
+(
+ID_Wypozyczenie int primary key IDENTITY(1,1) not null,
+ID_Uzytkownik int not null,
+ID_Urzadzenie int not null,
+Data_wypozyczenia datetime not null,
+Data_zwrotu datetime
+);
+--format daty YYYY-MM-DD hh:mm:ss
+
+
+ALTER TABLE Wypozyczenie
+ADD CONSTRAINT FK_Urzytkownik
+FOREIGN KEY (ID_Uzytkownik) REFERENCES Uzytkownik(ID_Uzytkownik);
+
+ALTER TABLE Wypozyczenie
+ADD CONSTRAINT FK_Urzadzenie
+FOREIGN KEY (ID_Urzadzenie) REFERENCES Urzadzenie(ID_Urzadzenie);
+
+
+
+Insert into Uzytkownik (Imie,Nazwisko,Kod_karty)
+Values('Pierwszy','Testowy1','RandomKod1');
+
+Insert into Uzytkownik (Imie,Nazwisko,Kod_karty)
+Values('Drugi','Testowy2','RandomKod2');
+
+Insert into Uzytkownik (Imie,Nazwisko,Kod_karty)
+Values('Trzeci','Testowy3','RandomKod3');
+
+Insert into Urzadzenie (Nazwa,Kod_urzadzenia,Wypozyczone)
+Values('Siekiera','ABC123',0);
+
+Insert into Urzadzenie (Nazwa,Kod_urzadzenia,Wypozyczone)
+Values('Motyka','DEF456',0);
+
+Insert into Urzadzenie (Nazwa,Kod_urzadzenia,Wypozyczone)
+Values('Wiertarka','GHI789',0);
+
+Insert into Wypozyczenie (ID_Uzytkownik,ID_Urzadzenie,Data_wypozyczenia)
+Values(1,2,'2020-03-10 21:56:33');
+
+Insert into Wypozyczenie (ID_Uzytkownik,ID_Urzadzenie,Data_wypozyczenia)
+Values(3,2,'2020-03-10 21:57:45');
+
+Insert into Wypozyczenie (ID_Uzytkownik,ID_Urzadzenie,Data_wypozyczenia)
+Values(1,1,'2020-03-10 22:58:11');
+
+Select * from Urzadzenie;
+
+Select * from Uzytkownik;
+
+Select Uzytkownik.Nazwisko,Uzytkownik.Imie, Urzadzenie.Nazwa from Wypozyczenie
+inner join Uzytkownik on Wypozyczenie.ID_Uzytkownik=Uzytkownik.ID_Uzytkownik
+inner join Urzadzenie on Wypozyczenie.ID_Urzadzenie=Urzadzenie.ID_Urzadzenie;
