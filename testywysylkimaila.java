@@ -17,15 +17,15 @@ import java.util.Properties;
 @Controller
 public class testywysylkimaila 
 {
-
     private  String serwer_smtp = "smtp.gmail.com";
     private  String login = "testydlaprojektu@gmail.com";
     private  String haslo = "testy123";
     private  String email_nadawcy = "testydlaprojektu@gmail.com";
-    private  String email_odbiorcy = "testydlaprojektu@gmail.com, wojtekbe7@gmail.com, 241864@student.pwr.edu.pl, beata-kos1@o2.pl";
-    private  String ukryte_kopie = "saximprow@gmail.com";
+    private  String email_odbiorcy = "testydlaprojektu@gmail.com, wojtekbe7@gmail.com"; // w jednym stringu po przecinku można kilka adresów
+    //private  String kopie = ""; // tutaj też można po przecinku kilka jak coś, sprawdzałem, działa
+    //private  String ukryte_kopie = ""; // tutaj również, sprawdzałem, działa
     private  String temat = "Test maila z apki - temat";
-    private  String tresc = "Próbny e-mail z apki... Działa...? ";
+    private  String tresc = "Próbny e-mail z apki... Działa...? Działa!!! :D ";
 
     @GetMapping("/testymailowe")
         public void wyslij_maila()
@@ -33,7 +33,7 @@ public class testywysylkimaila
             Properties prop = System.getProperties();
             prop.put("mail.smtp.host", serwer_smtp);
             prop.put("mail.smtp.auth", "true");
-            prop.put("mail.smtp.port", "587");
+            prop.put("mail.smtp.port", "587"); // 587 to port
             prop.put("mail.smtp.starttls.enable", "true");
 
             Session session = Session.getInstance(prop, null);
@@ -44,7 +44,8 @@ public class testywysylkimaila
 
                     msg.setFrom(new InternetAddress(email_nadawcy));
                     msg.setRecipients(Message.RecipientType.TO,InternetAddress.parse(email_odbiorcy, false));
-                    msg.setRecipients(Message.RecipientType.CC,InternetAddress.parse(ukryte_kopie, false));
+                   // msg.setRecipients(Message.RecipientType.CC,InternetAddress.parse(kopie, false));
+                   // msg.setRecipients(Message.RecipientType.BCC,InternetAddress.parse(ukryte_kopie, false));
                     msg.setSubject(temat);
                     msg.setText(tresc);
                     msg.setSentDate(new Date());
