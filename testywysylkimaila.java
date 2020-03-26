@@ -21,7 +21,7 @@ public class testywysylkimaila
     private  String login = "testydlaprojektu@gmail.com";
     private  String haslo = "testy123";
     private  String email_nadawcy = "testydlaprojektu@gmail.com";
-    private  String email_odbiorcy = "testydlaprojektu@gmail.com, wojtekbe7@gmail.com"; // w jednym stringu po przecinku można kilka adresów
+    private  String email_odbiorcy = "testydlaprojektu@gmail.com"; // w jednym stringu po przecinku można kilka adresów, w tym wypadku wysyłamy na swój własny adres
     //private  String kopie = ""; // tutaj też można po przecinku kilka jak coś, sprawdzałem, działa
     //private  String ukryte_kopie = ""; // tutaj również, sprawdzałem, działa
     private  String temat = "Test maila z apki - temat";
