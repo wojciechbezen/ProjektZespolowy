@@ -59,3 +59,10 @@ Values('2020-03-10 21:57:45','RandomKod3','DEF456');
 
 Insert into Wypozyczenie (Data_wypozyczenia,Kod_karty,Kod_urzadzenia)
 Values('2020-03-10 22:58:11','RandomKod1','ABC123');
+
+
+
+
+Select Uzytkownik.Nazwisko,Uzytkownik.Imie, Urzadzenie.Nazwa from Wypozyczenie
+inner join Uzytkownik on Wypozyczenie.Kod_karty=Uzytkownik.Kod_karty
+inner join Urzadzenie on Wypozyczenie.Kod_urzadzenia=Urzadzenie.Kod_urzadzenia
