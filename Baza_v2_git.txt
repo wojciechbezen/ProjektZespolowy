@@ -1,16 +1,16 @@
 Create table Uzytkownik
 (
-ID_Uzytkownik int primary key IDENTITY(1,1) not null,
+ID_Uzytkownik int IDENTITY(1,1) not null,
 Imie varchar(30) not null,
 Nazwisko varchar(30) not null,
-Kod_karty varchar(30) not null
+Kod_karty varchar(30) primary key not null
 );
 
 Create table Urzadzenie
 (
-ID_Urzadzenie int primary key IDENTITY(1,1) not null,
+ID_Urzadzenie int IDENTITY(1,1) not null,
 Nazwa varchar(200) not null,
-Kod_urzadzenia varchar(30) not null,
+Kod_urzadzenia varchar(30) primary key not null,
 Wypozyczone bit
 );
 
@@ -28,7 +28,7 @@ Kod_urzadzenia varchar(30) not null
 
 
 ALTER TABLE Wypozyczenie
-ADD CONSTRAINT FK_Urzytkownik
+ADD CONSTRAINT FK_Uzytkownik
 FOREIGN KEY (Kod_karty) REFERENCES Uzytkownik(Kod_karty);
 
 ALTER TABLE Wypozyczenie
